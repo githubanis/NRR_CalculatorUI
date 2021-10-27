@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <h1>Net Run Rate Calculator</h1>
+
+    <table class="table table-success table-hover table-striped">
+      <thead class="light">
+        <tr>
+          <th scope="col">SL</th>
+          <th scope="col">Team Name</th>
+          <th scope="col">Net Run Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams">
+          <th>{{team.teamId}}</th>
+          <td>{{team.teamName}}</td>
+          <td>{{team.teamNRR}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="showOptions()">Add Match Score</button>
+  <div class="row" *ngIf="options">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="foods">Team1</label>
+        <select class="form-control" (change)="changeMatch1($event)">
+          <option value="1">Select</option>
+            <option *ngFor="let team of teams">{{team.teamName}}</option>
+        </select>
+      </div>
+      <div *ngIf="showTextBox1">
+        <input class="form-control mt-2" type="text" placeholder="Input team score">
+        <input class="form-control mt-2" type="text" placeholder="Input team score">
+
+      </div>
+    </div>
+    <div class="col-md-2">
+      <h4>VS</h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="foods">Team2</label>
+        <select class="form-control" (change)="changeMatch2($event)">
+            <option value="1">Select</option>
+            <option *ngFor="let team of teams">{{team.teamName}}</option>
+        </select>
+      </div>
+      <div *ngIf="showTextBox2">
+        <input class="form-control mt-2" type="text" placeholder="Input team score">
+        <input class="form-control mt-2" type="text" placeholder="Input team score">
+      </div>
+    </div>
+
+  </div>
+  <button type="button" *ngIf="showTextBox1 && showTextBox2" class="btn btn-primary mt-2" (click)="Calculate()">Calculate NRR</button>
+</div>
+
